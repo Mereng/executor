@@ -4,7 +4,7 @@ provides simple rate limiter
 ## Example
 
 ```go
-package executor_test
+package main
 
 import (
 	"context"
@@ -13,11 +13,14 @@ import (
 	"github.com/Mereng/executor"
 )
 
+// Example job
 type sampleJob struct {
+	// Some useful fields
 }
 
 // Implements interface executor.Job
 func (j *sampleJob) Execute(ctx context.Context) {
+	// Some useful work
 	time.Sleep(200 * time.Millisecond)
 }
 
@@ -30,7 +33,7 @@ func main() {
 	for i := 0; i < 3; i++ {
 		ch <- &sampleJob{}
 	}
-
+	
 	cancel()
 	ex.Wait()
 }
